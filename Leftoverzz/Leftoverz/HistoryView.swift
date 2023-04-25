@@ -17,16 +17,16 @@ struct RecipeView: View {
     @Binding var showRecipe: Bool
     @State var recipeName: String
     @ObservedObject var recipes : Recipes = Recipes()
+    @State var ingredients: [String] = [
     
     var body: some View {
         VStack {
             Text("\(recipeName)")
-        }.onAppear {
-            List {
-                ForEach(recipes.getFile(name: recipeName).ingredients, id: \.self) { ingredient in
-                    Text(ingredient)
-                }
+            List (ingredients, id: \.self) {
+                ingredient in Text(ingredient)
             }
+        }.onAppear {
+            ingredients = recipes.getFile(name: recipeName).ingredients
         }
     }
 }
