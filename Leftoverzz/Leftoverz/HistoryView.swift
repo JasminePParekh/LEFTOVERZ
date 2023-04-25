@@ -17,7 +17,7 @@ struct RecipeView: View {
     @Binding var showRecipe: Bool
     @State var recipeName: String
     @ObservedObject var recipes : Recipes = Recipes()
-    @State var ingredients: [String] = [
+    @State var ingredients: [String] = []
     
     var body: some View {
         VStack {
