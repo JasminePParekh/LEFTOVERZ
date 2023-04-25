@@ -99,6 +99,7 @@ struct HistoryView: View {
     
     var body: some View {
         NavigationStack {
+            Text("History View")
             List(history, id: \.self){ file in
                 NavigationLink {
                     RecipeView(showRecipe: $showRecipe, recipeName: file)
@@ -116,5 +117,10 @@ struct HistoryView: View {
                 }
             }
         }
+    }
+}
+struct HistoryView_Previews: PreviewProvider {
+    static var previews: some View {
+        HistoryView().environmentObject(Recipes())
     }
 }
