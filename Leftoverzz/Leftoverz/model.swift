@@ -54,7 +54,7 @@ class Recipes : ObservableObject {
     }
     
     func createRecipe() -> Recipe {
-        var items:[String] = [] //have to add ingredients here
+        let items:[String] = [] //have to add ingredients here
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-mm-yy   hh:mm"
         let date = dateFormatter.string(from: Date())
