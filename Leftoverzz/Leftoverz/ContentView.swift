@@ -95,7 +95,7 @@ struct ContentView: View {
                             }
                         } else {
                             HStack{
-                                Text("Image categories: NA")
+                                Text("Image categories: N/A")
                                     .font(.caption)
                             }
                         }

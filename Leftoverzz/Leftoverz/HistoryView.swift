@@ -41,7 +41,7 @@ struct HistoryView: View {
     
     var body: some View {
         NavigationStack {
-            Text("History View")
+            Text("Past Recipes Viewed")
             List(history, id: \.self){ file in
                 NavigationLink {
                     RecipeView(showRecipe: $showRecipe, recipeName: file)
