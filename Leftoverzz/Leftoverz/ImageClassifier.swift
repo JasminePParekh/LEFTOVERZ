@@ -44,11 +44,11 @@ struct Classifier {
         let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
         
         try? handler.perform([request])
-        
+//        VNRecognizedObjectObservation
         guard let results = request.results as? [VNClassificationObservation] else {
             return
         }
-        
+//        print(results)
         if let firstResult = results.first {
             self.results = firstResult.identifier
         }

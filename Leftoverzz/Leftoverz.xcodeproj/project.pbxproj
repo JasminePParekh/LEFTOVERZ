@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		888EC36429F75BFA001B7AF9 /* MyFridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */; };
 		888EC36629F75C20001B7AF9 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36529F75C20001B7AF9 /* model.swift */; };
+		888EC36829F86A2E001B7AF9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36729F86A2E001B7AF9 /* HistoryView.swift */; };
 		E336A1B729EF2618004E849A /* LeftoverzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E336A1B629EF2618004E849A /* LeftoverzApp.swift */; };
 		E336A1B929EF2618004E849A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E336A1B829EF2618004E849A /* ContentView.swift */; };
 		E336A1BB29EF2619004E849A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E336A1BA29EF2619004E849A /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFridgeView.swift; sourceTree = "<group>"; };
 		888EC36529F75C20001B7AF9 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
+		888EC36729F86A2E001B7AF9 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		E336A1B329EF2618004E849A /* Leftoverz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leftoverz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E336A1B629EF2618004E849A /* LeftoverzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftoverzApp.swift; sourceTree = "<group>"; };
 		E336A1B829EF2618004E849A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				E336A1E029EF2911004E849A /* ImagePicker.swift */,
 				888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */,
 				888EC36529F75C20001B7AF9 /* model.swift */,
+				888EC36729F86A2E001B7AF9 /* HistoryView.swift */,
 				E336A1E429EF2ACA004E849A /* MobileNetV2.mlmodel */,
 				E336A1BA29EF2619004E849A /* Assets.xcassets */,
 				E336A1BC29EF2619004E849A /* Preview Content */,
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E336A1E329EF2A1C004E849A /* ImageClassifier.swift in Sources */,
+				888EC36829F86A2E001B7AF9 /* HistoryView.swift in Sources */,
 				E336A1E129EF2911004E849A /* ImagePicker.swift in Sources */,
 				E336A1B929EF2618004E849A /* ContentView.swift in Sources */,
 				888EC36429F75BFA001B7AF9 /* MyFridgeView.swift in Sources */,
@@ -437,7 +441,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Leftoverz/Preview Content\"";
-				DEVELOPMENT_TEAM = URDWNCHQ2M;
+				DEVELOPMENT_TEAM = H6699N52ZA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -468,7 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Leftoverz/Preview Content\"";
-				DEVELOPMENT_TEAM = URDWNCHQ2M;
+				DEVELOPMENT_TEAM = H6699N52ZA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -498,7 +502,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = URDWNCHQ2M;
+				DEVELOPMENT_TEAM = H6699N52ZA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
@@ -518,7 +522,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = URDWNCHQ2M;
+				DEVELOPMENT_TEAM = H6699N52ZA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
@@ -537,7 +541,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = URDWNCHQ2M;
+				DEVELOPMENT_TEAM = H6699N52ZA;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jparekh2.LeftoverzUITests;
@@ -555,7 +559,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = URDWNCHQ2M;
+				DEVELOPMENT_TEAM = H6699N52ZA;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jparekh2.LeftoverzUITests;
