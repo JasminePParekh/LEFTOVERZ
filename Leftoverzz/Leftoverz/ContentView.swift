@@ -83,6 +83,20 @@ struct ContentView: View {
                         .foregroundColor(.blue)
                 }
                 .padding()
+                Button(action: {
+                    if uiImage != nil {
+                        classifier.detect(uiImage: uiImage!)
+                    }
+                }) {
+                    Image(systemName: "photo")
+                        .onTapGesture {
+                            isPresenting = true
+                            sourceType = .photoLibrary
+                        }
+                        .font(.title)
+                        .foregroundColor(.blue)
+                }
+                .padding()
                 Spacer()
                 VStack {
                     Group {
