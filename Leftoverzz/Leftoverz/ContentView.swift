@@ -18,6 +18,8 @@ extension View {
 struct TodoItem: Identifiable {
     let id: UUID
     var title: String
+    var expiresIn: String
+    var expireDate: Date
 }
 
 
@@ -27,7 +29,9 @@ struct ContentView: View {
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State var item: String = ""
     @State var mvText: String = ""
-    @State var items = [TodoItem(id: UUID(), title: "test1"), TodoItem(id: UUID(), title: "test2"), TodoItem(id: UUID(), title: "test3")]
+    @State var items = [TodoItem(id: UUID(), title: "test1", expiresIn: "Ready to Eat", expireDate: Date()), TodoItem(id: UUID(), title: "test2", expiresIn: "1 week", expireDate: Date()), TodoItem(id: UUID(), title: "test3", expiresIn: "2 weeks", expireDate: Date())]
+    let options = ["Ready to Eat", "1 week", "2 weeks", "3 weeks"]
+    @State private var selection = "Ready to Eat"
     @ObservedObject var classifier: ImageClassifier
     
     var body: some View {
@@ -37,7 +41,7 @@ struct ContentView: View {
                     VStack {
                         List {
                             ForEach($items) { $ing in
-                                TextField("Title", text: $ing.title)
+                                TextField("Title", text: $ing.title).foregroundColor(backgroundColor(expireDate: ing.expireDate))
                             }
                             .onDelete {
                                 (indexSet) in
@@ -57,8 +61,17 @@ struct ContentView: View {
                                 .stroke(.black, lineWidth: 4)
                         )
                         .padding()
+                    VStack {
+                        Text("Expires In:")
+                        Picker("Time until item expires", selection: $selection) {
+                            ForEach(options, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
                     Button(action: {
-                        items.append(TodoItem(id: UUID(), title: mvText))
+                        items.append(TodoItem(id: UUID(), title: mvText, expiresIn: selection, expireDate: setExpirationDate(selected: selection)))
                     }) {
                         Image(systemName: "arrow.up")
 //                        Image(systemName: "plus") // Figure which to use
@@ -120,7 +133,7 @@ struct ContentView: View {
                 Spacer()
                 Button(action: {
                     if let imageClass2 = classifier.imageClass {
-                        items.append(TodoItem(id: UUID(), title: imageClass2))
+                        items.append(TodoItem(id: UUID(), title: imageClass2, expiresIn: selection, expireDate: setExpirationDate(selected: selection)))
                     }
                 }) {
                     Image(systemName: "checkmark")
@@ -144,6 +157,35 @@ struct ContentView: View {
         }
         .padding()
     }
+}
+
+func backgroundColor(expireDate:Date) -> Color {
+    //dividing by number of seconds in a day
+    let daysTilExpire = Date().distance(to: expireDate)/86400
+    switch (daysTilExpire) {
+    case 7...14: return .green
+    case 3...7: return .orange
+    case 14...: return .blue
+    default:
+        return .red
+    }
+}
+
+func setExpirationDate(selected: String) -> Date {
+    let currDate = Date()
+    var dateComp = DateComponents()
+    dateComp.month = 0
+    dateComp.year = 0
+    
+    switch (selected) {
+    case "Ready to Eat": dateComp.day = 3
+    case "1 week": dateComp.day = 7
+    case "2 weeks": dateComp.day = 14
+    default: dateComp.day = 21
+    }
+    
+    let expiresDate = Calendar.current.date(byAdding: dateComp, to: currDate)
+    return expiresDate!
 }
 
 struct ContentView_Previews: PreviewProvider {
