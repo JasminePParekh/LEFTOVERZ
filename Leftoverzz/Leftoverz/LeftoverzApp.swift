@@ -10,8 +10,7 @@ import SwiftUI
 @main
 struct LeftoverzApp: App {
     var body: some Scene {
-        WindowGroup {
-            Views(classifier: ImageClassifier())
+        WindowGroup {            ContentView().environmentObject(SearchObject()).environmentObject(ResourcesModel())
         }
     }
 }

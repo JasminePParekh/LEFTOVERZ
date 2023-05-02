@@ -208,63 +208,219 @@ func setExpirationDate(selected: String) -> Date {
 }
 
 
-struct Recipe : Codable {
-    var name: String
-    var ingredients: [String]
-}
+//struct Recipe : Codable {
+//    var name: String
+//    var ingredients: [String]
+//}
+//
+//struct RecipeView: View {
+//    @Binding var showRecipe: Bool
+//    @State var recipeName: String
+//    @ObservedObject var recipes : Recipes = Recipes()
+//    @State var ingredients: [String] = ["Ingredient1", "Ingredient2", "Ingredient3"]
+//
+//    var body: some View {
+//        VStack {
+//            Text("\(recipeName)")
+//            List (ingredients, id: \.self) { ingredient in
+//                Text("\(ingredient)")
+//            }
+//        }.onAppear {
+////            ingredients = recipes.getFile(name: recipeName).ingredients
+//            ingredients = ["Ingredient1", "Ingredient2", "Ingredient3"] // Temp. Take line out and uncomment line above
+//        }
+//    }
+//}
 
-struct RecipeView: View {
-    @Binding var showRecipe: Bool
-    @State var recipeName: String
-    @ObservedObject var recipes : Recipes = Recipes()
-    @State var ingredients: [String] = ["Ingredient1", "Ingredient2", "Ingredient3"]
+//struct FavoriteView: View {
+//    @State var showRecipe: Bool = false
+//    @State var history: [String] = ["Example1", "Example2", "Example3"] // Temp. Take examples out
+//    @ObservedObject var recipes : Recipes = Recipes()
+//    @State var madeHist = false
+//
+//    
+//    var body: some View {
+//        NavigationStack {
+//            Text("Favorite Recipes")
+//            List(history, id: \.self){ file in
+//                NavigationLink {
+//                    RecipeView(showRecipe: $showRecipe, recipeName: file)
+//                } label: {
+//                    Text("\(file)")
+//                }
+//            }
+//        }.onAppear {
+//            if !madeHist {
+//                madeHist = true
+//                let recipeNames: [String] = recipes.getAllFiles()
+//                
+//                for r in recipeNames {
+//                    history.append(r)
+//                }
+//            }
+//        }
+//    }
+//}
+
+//struct Views_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Views(classifier: ImageClassifier())
+////        FavoriteView().environmentObject(Recipes())
+//    }
+//}
+
+struct RecipeSearchView: View {
+    @EnvironmentObject var searchObj: SearchObject
+    @EnvironmentObject var rm: ResourcesModel
+    @State var showRecipeDetails = false
+    @State var ingredients = ""
+    @State var recipeNumber = 0
     
     var body: some View {
         VStack {
-            Text("\(recipeName)")
-            List (ingredients, id: \.self) { ingredient in
-                Text("\(ingredient)")
+            Text("Search Manually for a Recipe?")
+            HStack{
+                TextField("Seperate Ingredients with ', '", text: $ingredients)
+                Button(action: {
+                    searchObj.recipes = [RecipeView]()
+                    searchObj.getUrl(request: ingredients)}){
+                    Text("Go!")
+                }
             }
-        }.onAppear {
-//            ingredients = recipes.getFile(name: recipeName).ingredients
-            ingredients = ["Ingredient1", "Ingredient2", "Ingredient3"] // Temp. Take line out and uncomment line above
+            if searchObj.recipes.count != 0 {
+                List(0...searchObj.recipes.count-1,id:\.self) {
+                    i in searchObj.recipes[i].onTapGesture{
+                        showRecipeDetails = true
+                        recipeNumber = i
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showRecipeDetails) {
+            let currRecipe = searchObj.recipes[recipeNumber].recipe
+            VStack{
+                AsyncImage(
+                    url: URL(string: currRecipe.imageUrl),
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fill)
+                    },
+                    placeholder: {
+                        ProgressView()
+                    }
+                )
+                HStack {
+                    Text(currRecipe.name)
+                    Image(systemName: rm.favoriteRecipes.contains(currRecipe) ? "heart.fill" : "heart")
+                        .foregroundColor(Color.red)
+                        .onTapGesture {
+                            rm.toggleFav(recipe: currRecipe)
+                        }
+                }
+                if currRecipe.ingredients.count != 0 {
+                    List(0...currRecipe.ingredients.count-1,id:\.self) {
+                        i in Text(currRecipe.ingredients[i])
+                    }
+                }
+                Link("View Recipe from Source", destination: URL(string: currRecipe.sourceUrl)!)
+            }
         }
     }
 }
-
-struct FavoriteView: View {
-    @State var showRecipe: Bool = false
-    @State var history: [String] = ["Example1", "Example2", "Example3"] // Temp. Take examples out
-    @ObservedObject var recipes : Recipes = Recipes()
-    @State var madeHist = false
-
+struct RecipeView: View {
+    @EnvironmentObject var rm: ResourcesModel
+    
+    var recipe = Recipe(name: "", imageUrl: "", sourceUrl: "", ingredients: [], isLiked: false)
+    
+    init(recipe: Recipe) {
+        self.recipe = recipe
+    }
     
     var body: some View {
-        NavigationStack {
-            Text("Favorite Recipes")
-            List(history, id: \.self){ file in
-                NavigationLink {
-                    RecipeView(showRecipe: $showRecipe, recipeName: file)
-                } label: {
-                    Text("\(file)")
+        HStack{
+            AsyncImage(
+                url: URL(string: recipe.imageUrl),
+                content: { image in
+                    image.resizable()
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 100, maxHeight: 100)
+                },
+                placeholder: {
+                    ProgressView()
                 }
-            }
-        }.onAppear {
-            if !madeHist {
-                madeHist = true
-                let recipeNames: [String] = recipes.getAllFiles()
-                
-                for r in recipeNames {
-                    history.append(r)
+            )
+            Text(recipe.name)
+            Spacer()
+            Image(systemName: rm.favoriteRecipes.contains(recipe) ? "heart.fill" : "heart")
+                .foregroundColor(Color.red)
+                .onTapGesture {
+                    rm.toggleFav(recipe: recipe)
                 }
-            }
         }
     }
 }
 
-struct Views_Previews: PreviewProvider {
-    static var previews: some View {
-        Views(classifier: ImageClassifier())
-//        FavoriteView().environmentObject(Recipes())
+struct FavoritesView: View {
+    @EnvironmentObject var rm: ResourcesModel
+    @EnvironmentObject var searchObj: SearchObject
+    
+    @State var showRecipeDetails = false
+    @State var favoriteRecipeViews = [RecipeView]()
+    @State var recipeNumber = 0
+    
+    func addView(){
+        var views = [RecipeView]()
+        print("IN HERE HOERS")
+        for recipe in rm.favoriteRecipes{
+            print("Hello ")
+            views.append(RecipeView(recipe: recipe))
+        }
+        favoriteRecipeViews = views
+        print(rm.favoriteRecipes)
+        print(favoriteRecipeViews)
+    }
+    var body: some View {
+        VStack {
+            Text("Your Saved Favorites")
+            if favoriteRecipeViews.count != 0 {
+                List(0...favoriteRecipeViews.count-1,id:\.self) {
+                    i in favoriteRecipeViews[i].onTapGesture{
+                        showRecipeDetails = true
+                        recipeNumber = i
+                    }
+                }
+            }
+        }
+        .onAppear{addView()}
+        .sheet(isPresented: $showRecipeDetails) {
+            let currRecipe = favoriteRecipeViews[recipeNumber].recipe
+            VStack{
+                AsyncImage(
+                    url: URL(string: currRecipe.imageUrl),
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fill)
+                    },
+                    placeholder: {
+                        ProgressView()
+                    }
+                )
+                HStack {
+                    Text(currRecipe.name)
+                    Image(systemName: rm.favoriteRecipes.contains(currRecipe) ? "heart.fill" : "heart")
+                        .foregroundColor(Color.red)
+                        .onTapGesture {
+                            rm.toggleFav(recipe: currRecipe)
+                        }
+                }
+                if currRecipe.ingredients.count != 0 {
+                    List(0...currRecipe.ingredients.count-1,id:\.self) {
+                        i in Text(currRecipe.ingredients[i])
+                    }
+                }
+                Link("View Recipe from Source", destination: URL(string: currRecipe.sourceUrl)!)
+            }
+        }
     }
 }

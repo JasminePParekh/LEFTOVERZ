@@ -1,0 +1,6 @@
+framework module Pods_Leftoverz_LeftoverzUITests {
+  umbrella header "Pods-Leftoverz-LeftoverzUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
