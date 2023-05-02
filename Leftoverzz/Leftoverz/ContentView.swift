@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-extension View {
-    func hideKeyboard() {
-        let resign = #selector(UIResponder.resignFirstResponder)
-        UIApplication.shared.sendAction(resign, to: nil, from: nil, for: nil)
-    }
-}
-
-
 struct TodoItem: Identifiable {
     let id: UUID
     var title: String
@@ -22,6 +14,33 @@ struct TodoItem: Identifiable {
     var expireDate: Date
 }
 
+struct ItemView : View {
+    @State var item: TodoItem
+    @Binding var selectedItems: Set<UUID>
+    var selected: Bool {
+        selectedItems.contains(item.id)
+    }
+    
+    var body: some View {
+        HStack {
+            TextField("Title", text: $item.title).foregroundColor(backgroundColor(expireDate: item.expireDate))
+            
+            Spacer()
+            
+            if selected {
+                Image(systemName: "checkmark")
+                    .foregroundColor(.blue)
+            }
+        }
+        .onTapGesture {
+            if selected {
+                selectedItems.remove(item.id)
+            } else {
+                selectedItems.insert(item.id)
+            }
+        }
+    }
+}
 
 struct ContentView: View {
     @State var isPresenting: Bool = false
@@ -33,24 +52,26 @@ struct ContentView: View {
     let options = ["Ready to Eat", "1 week", "2 weeks", "3 weeks"]
     @State private var selection = "Ready to Eat"
     @ObservedObject var classifier: ImageClassifier
+    @State private var multiSelection = Set<UUID>()
     
     var body: some View {
         VStack{
             VStack {
                 NavigationView {
                     VStack {
-                        List {
-                            ForEach($items) { $ing in
-                                TextField("Title", text: $ing.title).foregroundColor(backgroundColor(expireDate: ing.expireDate))
+                        List(selection: $multiSelection) {
+                            ForEach($items)  { $i in
+                                ItemView(item: i, selectedItems: $multiSelection)
                             }
                             .onDelete {
                                 (indexSet) in
                                 items.remove(atOffsets: indexSet)
                             }
+                            .listStyle(.inset)
                         }
+                        
                     }
                     .navigationTitle("Current Items")
-                    .toolbar { EditButton() }
                 }
                 HStack {
                     TextField(" Manually Add Items", text:$mvText)
@@ -141,9 +162,6 @@ struct ContentView: View {
                 }
                 .padding()
             }
-        }
-        .onTapGesture {
-            hideKeyboard()
         }
         
         .sheet(isPresented: $isPresenting){

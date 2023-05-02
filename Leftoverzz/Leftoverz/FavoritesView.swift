@@ -1,8 +1,8 @@
 //
-//  HistoryView.swift
+//  FavoritesView.swift
 //  Leftoverz
 //
-//  Created by Johann Antisseril on 4/25/23.
+//  Created by Johann Antisseril on 4/28/23.
 //
 
 import Foundation
@@ -32,7 +32,7 @@ struct RecipeView: View {
     }
 }
 
-struct HistoryView: View {
+struct FavoriteView: View {
     @State var showRecipe: Bool = false
     @State var history: [String] = ["Example1", "Example2", "Example3"] // Temp. Take examples out
     @ObservedObject var recipes : Recipes = Recipes()
@@ -41,7 +41,7 @@ struct HistoryView: View {
     
     var body: some View {
         NavigationStack {
-            Text("Past Recipes Viewed")
+            Text("Favorite Recipes")
             List(history, id: \.self){ file in
                 NavigationLink {
                     RecipeView(showRecipe: $showRecipe, recipeName: file)
@@ -62,8 +62,8 @@ struct HistoryView: View {
     }
 }
 
-struct HistoryView_Previews: PreviewProvider {
+struct FavoriteView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView().environmentObject(Recipes())
+        FavoriteView().environmentObject(Recipes())
     }
 }
