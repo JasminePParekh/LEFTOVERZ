@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8818D77A29FC05A10044A367 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8818D77929FC05A10044A367 /* FavoritesView.swift */; };
 		888EC36429F75BFA001B7AF9 /* MyFridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */; };
 		888EC36629F75C20001B7AF9 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36529F75C20001B7AF9 /* model.swift */; };
-		888EC36829F86A2E001B7AF9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36729F86A2E001B7AF9 /* HistoryView.swift */; };
 		E336A1B729EF2618004E849A /* LeftoverzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E336A1B629EF2618004E849A /* LeftoverzApp.swift */; };
 		E336A1B929EF2618004E849A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E336A1B829EF2618004E849A /* ContentView.swift */; };
 		E336A1BB29EF2619004E849A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E336A1BA29EF2619004E849A /* Assets.xcassets */; };
@@ -40,9 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8818D77929FC05A10044A367 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFridgeView.swift; sourceTree = "<group>"; };
 		888EC36529F75C20001B7AF9 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
-		888EC36729F86A2E001B7AF9 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		E336A1B329EF2618004E849A /* Leftoverz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leftoverz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E336A1B629EF2618004E849A /* LeftoverzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftoverzApp.swift; sourceTree = "<group>"; };
 		E336A1B829EF2618004E849A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 				E336A1E029EF2911004E849A /* ImagePicker.swift */,
 				888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */,
 				888EC36529F75C20001B7AF9 /* model.swift */,
-				888EC36729F86A2E001B7AF9 /* HistoryView.swift */,
+				8818D77929FC05A10044A367 /* FavoritesView.swift */,
 				E336A1E429EF2ACA004E849A /* MobileNetV2.mlmodel */,
 				E336A1BA29EF2619004E849A /* Assets.xcassets */,
 				E336A1BC29EF2619004E849A /* Preview Content */,
@@ -276,13 +276,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E336A1E329EF2A1C004E849A /* ImageClassifier.swift in Sources */,
-				888EC36829F86A2E001B7AF9 /* HistoryView.swift in Sources */,
 				E336A1E129EF2911004E849A /* ImagePicker.swift in Sources */,
 				E336A1B929EF2618004E849A /* ContentView.swift in Sources */,
 				888EC36429F75BFA001B7AF9 /* MyFridgeView.swift in Sources */,
 				E336A1E529EF2ACA004E849A /* MobileNetV2.mlmodel in Sources */,
 				888EC36629F75C20001B7AF9 /* model.swift in Sources */,
 				E336A1B729EF2618004E849A /* LeftoverzApp.swift in Sources */,
+				8818D77A29FC05A10044A367 /* FavoritesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
