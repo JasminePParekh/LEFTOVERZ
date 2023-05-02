@@ -11,7 +11,7 @@ import SwiftUI
 struct LeftoverzApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(classifier: ImageClassifier())
+            Views(classifier: ImageClassifier())
         }
     }
 }
