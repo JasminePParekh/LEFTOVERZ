@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8818D77A29FC05A10044A367 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8818D77929FC05A10044A367 /* FavoritesView.swift */; };
+		886AFE092A01B48100FC61A9 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886AFE082A01B48100FC61A9 /* Views.swift */; };
 		888EC36429F75BFA001B7AF9 /* MyFridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */; };
 		888EC36629F75C20001B7AF9 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EC36529F75C20001B7AF9 /* model.swift */; };
 		E336A1B729EF2618004E849A /* LeftoverzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E336A1B629EF2618004E849A /* LeftoverzApp.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		8818D77929FC05A10044A367 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		886AFE082A01B48100FC61A9 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		888EC36329F75BFA001B7AF9 /* MyFridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFridgeView.swift; sourceTree = "<group>"; };
 		888EC36529F75C20001B7AF9 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		E336A1B329EF2618004E849A /* Leftoverz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leftoverz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +118,7 @@
 				E336A1E429EF2ACA004E849A /* MobileNetV2.mlmodel */,
 				E336A1BA29EF2619004E849A /* Assets.xcassets */,
 				E336A1BC29EF2619004E849A /* Preview Content */,
+				886AFE082A01B48100FC61A9 /* Views.swift */,
 			);
 			path = Leftoverz;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				888EC36629F75C20001B7AF9 /* model.swift in Sources */,
 				E336A1B729EF2618004E849A /* LeftoverzApp.swift in Sources */,
 				8818D77A29FC05A10044A367 /* FavoritesView.swift in Sources */,
+				886AFE092A01B48100FC61A9 /* Views.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
