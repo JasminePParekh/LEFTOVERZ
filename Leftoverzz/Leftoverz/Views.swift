@@ -24,7 +24,7 @@ struct ItemView : View {
     
     var body: some View {
         HStack {
-            TextField("Title", text: $item.title).foregroundColor(backgroundColor(expireDate: item.expireDate))
+            TextField("Title", text: $item.title).foregroundColor(backgroundColor(selected: item.expiresIn))
             
             Spacer()
             
@@ -287,7 +287,9 @@ struct Views: View {
     }
 }
 
-func backgroundColor(expireDate:Date) -> Color {
+func backgroundColor(selected: String) -> Color {
+    var expireDate = setExpirationDate(selected: selected)
+    
     //dividing by number of seconds in a day
     let daysTilExpire = Date().distance(to: expireDate)/86400
     switch (daysTilExpire) {
